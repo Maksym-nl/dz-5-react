@@ -50,7 +50,7 @@ export default function MovieDetails() {
         </div>
         <div>
           <Link to="cast">Cast</Link>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews">Reviews1</Link>
         </div>
         <Outlet />
       </div>
