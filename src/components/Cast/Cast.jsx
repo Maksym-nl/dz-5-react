@@ -2,7 +2,7 @@ import { fetchBayCast } from 'Api/Api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const params = useParams();
 
@@ -16,7 +16,8 @@ export const Cast = () => {
     getCast();
   }, [params.movieId]);
   const imagePosterPath = 'https://image.tmdb.org/t/p/w500';
-
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
     <div>
       <div>
@@ -28,7 +29,7 @@ export const Cast = () => {
                   src={
                     character.profile_path
                       ? `${imagePosterPath}${character.profile_path}`
-                      : null
+                      : defaultImg
                   }
                   alt={character.title}
                 />
@@ -44,3 +45,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;

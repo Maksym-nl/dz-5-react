@@ -2,16 +2,19 @@ import { SerchBar } from 'components/SerchBar/SerchBar';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'Api/Api';
 import { MovieList } from 'components/MoviesList/MovieList';
+import { useSearchParams } from 'react-router-dom';
 
 export default function MovisePage() {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useSearchParams();
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    if (!searchValue) return;
+    const value = searchValue.get('value');
+    if (!value) return;
+
     const getMovies = async () => {
       try {
-        const response = await fetchMovies(searchValue);
+        const response = await fetchMovies(value);
         setMovies(response.results);
       } catch (error) {}
     };
@@ -19,7 +22,7 @@ export default function MovisePage() {
   }, [searchValue]);
 
   const onSubmit = value => {
-    setSearchValue(value);
+    setSearchValue({ value });
   };
 
   return (

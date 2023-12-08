@@ -20,14 +20,17 @@ export default function MovieDetails() {
   const imagePosterPath = 'https://image.tmdb.org/t/p/w500';
   const location = useLocation();
   const goBackBtn = useRef(location.state?.from ?? '/');
-
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
     <>
       <Link to={goBackBtn.current}>Go back....</Link>
       <div>
         <img
           src={
-            movie.poster_path ? `${imagePosterPath}${movie.poster_path}` : null
+            movie.poster_path
+              ? `${imagePosterPath}${movie.poster_path}`
+              : defaultImg
           }
           alt={movie.title}
         />
@@ -50,7 +53,7 @@ export default function MovieDetails() {
         </div>
         <div>
           <Link to="cast">Cast</Link>
-          <Link to="reviews">Reviews1</Link>
+          <Link to="reviews">Reviews</Link>
         </div>
         <Outlet />
       </div>
